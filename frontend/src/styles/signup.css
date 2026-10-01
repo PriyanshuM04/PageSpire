@@ -1,0 +1,51 @@
+.signup {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 1rem;
+}
+.signup form {
+    width: 100%;
+    max-width: 420px;
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+.signup h1 {
+    margin: 0 0 1rem;
+    text-align: center;
+    font-size: 1.5rem;
+}
+.field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.9rem;
+}
+.field label {
+    font-size: 0.85rem;
+    margin-bottom: 0.2rem;
+}
+.field input {
+    padding: 0.4rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+.field input[aria-invalid="true"] {
+    border-color: #d33;
+}
+.field-error {
+    color: #d33;
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+}
+.signup button {
+    width: 100%;
+    padding: 0.7rem;
+    border: 0;
+    border-radius: 8px;
+    background: #3b5bdb;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+}
