@@ -35,7 +35,7 @@ const initialForm = {
   return (
     <main className="signup">
       <form onSubmit={handleSubmit} noValidate>
-        <h1>Join PageSpire</h1>
+        <h1>PageSpire</h1>
         {field("fullname", "Full name")}
         {field("username", "Username")}
         {field("email", "Email", { type: "email" })}
