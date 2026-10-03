@@ -1,6 +1,7 @@
 import { useState} from "react";
 import FormField from "../components/FormField";
 import "../styles/signup.css";
+import { validateSignup} from "../utils/validateSignup";
 
 const initialForm = {
   fullname: "", username: "", email: "", phone: "",
@@ -13,12 +14,21 @@ const initialForm = {
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
+    setErrors((prev) => ({ ...prev, [name]: undefined}));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(form);
+    const found = validateSignup(form);
+    setErrors(found);
+    const first = Object.keys(found)[0];
+    if (first) {
+      document.getElementById(first)?.focus();
+      return;
+    }
+    console.log("valid", form);
   };
 
   const field = (name, label, extra = {}) => (
