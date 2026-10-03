@@ -2,6 +2,7 @@ import { useState} from "react";
 import FormField from "../components/FormField";
 import "../styles/signup.css";
 import { validateSignup} from "../utils/validateSignup";
+import { createUser } from "../api/users";
 
 const initialForm = {
   fullname: "", username: "", email: "", phone: "",
@@ -19,7 +20,7 @@ const initialForm = {
     setErrors((prev) => ({ ...prev, [name]: undefined}));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const found = validateSignup(form);
     setErrors(found);
@@ -28,7 +29,12 @@ const initialForm = {
       document.getElementById(first)?.focus();
       return;
     }
-    console.log("valid", form);
+    const payload = { ...form};
+    for (const n of ["social_link_1", "social_link_2", "social_link_3"]) {
+      if (!payload[n]) payload[n] = null;
+    }
+    const data = await createUser(payload);
+    console.log("response", form);
   };
 
   const field = (name, label, extra = {}) => (
