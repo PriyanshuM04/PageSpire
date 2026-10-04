@@ -66,3 +66,21 @@ body {
 .signup button:active {
     transform: scale(0.98);
 }
+.banner {
+    padding: 0.6rem 0.8rem;
+    border-radius: 8px;
+    margin-bottom: 0.9rem;
+    font-size: 0.9rem;
+}
+.banner.success {
+    background: #e6f7ec;
+    color: #17693a;
+}
+.banner.error {
+    background: #fdecec;
+    color: #a12626;
+}
+.signup button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
