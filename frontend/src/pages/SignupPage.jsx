@@ -50,8 +50,12 @@ const initialForm = {
     } else if (res.status === 422 && Array.isArray(res.data?.detail)) {
       const mapped = mapValidationErrors(res.data.detail);
       setErrors(mapped);
-      setStatus({ type: "error", message: "Please complete the form."});
+      setStatus({ type: "error", message: "Please fix the highlighted fields."});
       document.getElementById(Object.keys(mapped)[0])?.focus();
+    } else if (res.status === 409 && res.data?.field) {
+      setErrors({ [res.data.field]: res.data.detail });
+      setStatus({ type: "error", message: res.data.detail });
+      document.getElementById(res.data.field)?.focus();
     } else if (res.status === 0) {
       setStatus({
         type: "error",
