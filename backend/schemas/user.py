@@ -40,6 +40,11 @@ class UserCreate(BaseModel):
         if v > date.today():
             raise ValueError("Date of Birth cannot be in future")
         return v
+    
+    @field_validator("username", "email")
+    @classmethod
+    def lowercase_identifiers(cls, v: str) -> str:
+        return v.strip().lower()
 
     @model_validator(mode="after")
     def passwords_must_match(self):
