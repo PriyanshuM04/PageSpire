@@ -3,8 +3,10 @@ from pydantic import (
     BaseModel, EmailStr, Field, HttpUrl, 
     field_validator, model_validator
 )
+from pydantic import ConfigDict
 
 class UserCreate(BaseModel):
+    model_config = ConfigDict(extra="forbid")
     fullname: str = Field(
         min_length=2,
         max_length=80
@@ -28,9 +30,9 @@ class UserCreate(BaseModel):
         min_length=2,
         max_length=56
     )
-    social_link1: HttpUrl | None = None
-    social_link2: HttpUrl | None = None
-    social_link3: HttpUrl | None = None
+    social_link_1: HttpUrl | None = None
+    social_link_2: HttpUrl | None = None
+    social_link_3: HttpUrl | None = None
 
     @field_validator("dob")
     @classmethod
